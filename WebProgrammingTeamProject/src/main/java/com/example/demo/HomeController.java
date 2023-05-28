@@ -55,23 +55,21 @@ public class HomeController {
 		return mav;
 	}
 	
-	@Controller
-	@RequestMapping(produces = "application/json")
-	public class LoginController {
+	googleAPI  googleAPI;
 
-		googleAPI  googleAPI;
+    public HomeController(googleAPI googleAPI) {
+        this.googleAPI = googleAPI;
+    }
 
-	    public LoginController(googleAPI googleAPI) {
-	        this.googleAPI = googleAPI;
-	    }
-
-	    @GetMapping("/login/oauth2/code/{registrationId}")
-	    public String googleLogin(@RequestParam String code, @PathVariable String registrationId) {
-	    	googleAPI.socialLogin(code, registrationId);
-	        return "index";
-	    }
-	}
-	@RequestMapping(value="/logout")
+    @GetMapping("/login/oauth2/code/{registrationId}")
+    public ModelAndView googleLogin(@RequestParam String code, @PathVariable String registrationId) {
+    	googleAPI.socialLogin(code, registrationId);
+//        return "index";
+    	ModelAndView mav = new ModelAndView("index"); // Create ModelAndView with "index" view name
+        return mav;
+    }
+	
+	@RequestMapping(value="/logout/kakao")
 	public ModelAndView kakaologout(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		
@@ -82,4 +80,15 @@ public class HomeController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/logout")
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		
+		naverApi.naverLogout((String)session.getAttribute("accessToken"));
+		session.removeAttribute("accessToken");
+		session.removeAttribute("userId");
+	    
+	    mav.setViewName("index");
+		return mav;
+	}
 }

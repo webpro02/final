@@ -86,8 +86,13 @@
 		</span>
 		<span th:if="${userId!=null}" style="display: block; text-align: center;">
 			<form name = "logout" action="http://localhost:8080/logout">
-				<input type="submit" value="로그아웃">
+				<input type="submit" value="카카오/네이버 로그아웃">
 			</form>
+		</span>
+		<span>
+			<a href="https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080">
+				<input type="submit" value="구글 로그아웃">
+			</a>
 		</span>
 	</div>
 	<div id = "footer">
