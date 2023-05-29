@@ -55,11 +55,11 @@
 <title>웹프로그래밍[02] 2조 조별과제</title>
 </head>
 <body>
-	<h1 style = "text-align: center;">웹프로그래밍[02] 2조 조별과제</h1>
+	<h1 style = "text-align: center;">ICT공학부 홈페이지</h1>
 	<div id="header">
 		<nav>
 			<ul class="nav-container">
-				<li class="nav-item"><a href="">길찾기</a></li>
+				<li class="nav-item"><a href="http://localhost:8080/map">길찾기</a></li>
 				<li class="nav-item"><a href="">게시판</a></li>
 			</ul>
 		</nav>
@@ -79,7 +79,6 @@
 			<a href="https://accounts.google.com/o/oauth2/auth?client_id=1034093278574-n938gfqlq13r2eurtqqomk6sqlhniaa8.apps.googleusercontent.com&redirect_uri=http://localhost:8080/login/oauth2/code/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile">
 				<img src = "img/google_login.png">
 			</a>
-		</span>
 		</span>
 		<span th:if="${userId==null}" style="display: block; text-align: center;">
 			<h1>페이스북 로그인</h1>
