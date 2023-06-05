@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,15 +57,15 @@ public class HomeController {
 	}
 	
 	googleAPI  googleAPI;
-
+	
     public HomeController(googleAPI googleAPI) {
         this.googleAPI = googleAPI;
     }
 
     @GetMapping("/login/oauth2/code/{registrationId}")
-    public ModelAndView googleLogin(@RequestParam String code, @PathVariable String registrationId) {
+    public ModelAndView googleLogin(@RequestParam String code, @PathVariable String registrationId, Model model) {
     	googleAPI.socialLogin(code, registrationId);
-//        return "index";
+    	model.addAttribute("isLoggedIn", true);
     	ModelAndView mav = new ModelAndView("index"); // Create ModelAndView with "index" view name
         return mav;
     }
